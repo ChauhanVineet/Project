@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FF6B6B">
+    <title>Gym Coach - Your Personal Trainer</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="nav-item active" data-page="home">
+                <span class="icon">🏠</span>
+                <span>Home</span>
+            </div>
+            <div class="nav-item" data-page="workout">
+                <span class="icon">💪</span>
+                <span>Workout</span>
+            </div>
+            <div class="nav-item" data-page="progress">
+                <span class="icon">📊</span>
+                <span>Progress</span>
+            </div>
+            <div class="nav-item" data-page="nutrition">
+                <span class="icon">🥗</span>
+                <span>Nutrition</span>
+            </div>
+        </nav>
+
+        <!-- Home Page -->
+        <div class="page active" id="home">
+            <header class="header">
+                <h1>💪 Gym Coach</h1>
+                <p class="subtitle">Your Personal Training Companion</p>
+            </header>
+
+            <div class="motivation-card">
+                <h2 id="motivationText">Ready to crush your goals today?</h2>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalWorkouts">0</div>
+                    <div class="stat-label">Workouts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="currentStreak">0</div>
+                    <div class="stat-label">Day Streak</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalWeight">0</div>
+                    <div class="stat-label">kg Lifted</div>
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="startWorkout()">Start Workout</button>
+            <button class="btn-secondary" onclick="showPage('workout')">Create Custom Workout</button>
+        </div>
+
+        <!-- Workout Page -->
+        <div class="page" id="workout">
+            <header class="header">
+                <h1>Create Workout</h1>
+            </header>
+
+            <div class="workout-form">
+                <input type="text" id="workoutName" placeholder="Workout Name (e.g., Monday Workout)" class="input">
+                
+                <div id="exerciseList"></div>
+                
+                <button class="btn-secondary" onclick="addExercise()">+ Add Exercise</button>
+                <button class="btn-primary" onclick="saveWorkout()">Save Workout</button>
+            </div>
+
+            <div class="saved-workouts">
+                <h2>Saved Workouts</h2>
+                <div id="savedWorkoutsList"></div>
+            </div>
+        </div>
+
+        <!-- Active Workout Page -->
+        <div class="page" id="activeWorkout">
+            <header class="header">
+                <h1 id="activeWorkoutName">Workout</h1>
+                <button class="btn-icon" onclick="endWorkout()">✕</button>
+            </header>
+
+            <div class="timer-card">
+                <div class="timer" id="workoutTimer">00:00</div>
+                <div class="timer-label">Workout Time</div>
+            </div>
+
+            <div id="exerciseProgress"></div>
+
+            <div class="rest-timer hidden" id="restTimer">
+                <h2>Rest Time</h2>
+                <div class="rest-countdown" id="restCountdown">60</div>
+                <button class="btn-secondary" onclick="skipRest()">Skip Rest</button>
+            </div>
+        </div>
+
+        <!-- Progress Page -->
+        <div class="page" id="progress">
+            <header class="header">
+                <h1>Your Progress</h1>
+            </header>
+
+            <div class="progress-section">
+                <h2>Body Measurements</h2>
+                <div class="measurement-form">
+                    <input type="number" id="weight" placeholder="Weight (kg)" class="input">
+                    <input type="number" id="bodyFat" placeholder="Body Fat %" class="input">
+                    <button class="btn-secondary" onclick="saveMeasurement()">Save</button>
+                </div>
+                <div id="measurementHistory"></div>
+            </div>
+
+            <div class="progress-section">
+                <h2>Workout History</h2>
+                <div id="workoutHistory"></div>
+            </div>
+        </div>
+
+        <!-- Nutrition Page -->
+        <div class="page" id="nutrition">
+            <header class="header">
+                <h1>Nutrition Tracker</h1>
+            </header>
+
+            <div class="nutrition-summary">
+                <div class="macro-card">
+                    <div class="macro-value" id="caloriesConsumed">0</div>
+                    <div class="macro-label">Calories</div>
+                    <div class="macro-target">/ <span id="caloriesTarget">2500</span></div>
+                </div>
+                <div class="macro-card">
+                    <div class="macro-value" id="proteinConsumed">0</div>
+                    <div class="macro-label">Protein (g)</div>
+                    <div class="macro-target">/ <span id="proteinTarget">150</span></div>
+                </div>
+                <div class="macro-card">
+                    <div class="macro-value" id="carbsConsumed">0</div>
+                    <div class="macro-label">Carbs (g)</div>
+                    <div class="macro-target">/ <span id="carbsTarget">300</span></div>
+                </div>
+                <div class="macro-card">
+                    <div class="macro-value" id="fatsConsumed">0</div>
+                    <div class="macro-label">Fats (g)</div>
+                    <div class="macro-target">/ <span id="fatsTarget">80</span></div>
+                </div>
+            </div>
+
+            <div class="meal-form">
+                <h2>Log Meal</h2>
+                <input type="text" id="mealName" placeholder="Meal Name" class="input">
+                <input type="number" id="mealCalories" placeholder="Calories" class="input">
+                <input type="number" id="mealProtein" placeholder="Protein (g)" class="input">
+                <input type="number" id="mealCarbs" placeholder="Carbs (g)" class="input">
+                <input type="number" id="mealFats" placeholder="Fats (g)" class="input">
+                <button class="btn-primary" onclick="logMeal()">Log Meal</button>
+            </div>
+
+            <div id="mealsList"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

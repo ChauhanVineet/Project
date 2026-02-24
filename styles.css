@@ -1,0 +1,476 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #FF6B6B;
+    --secondary: #4ECDC4;
+    --accent: #FFE66D;
+    --bg: #FFFFFF;
+    --text: #2C3E50;
+    --light-gray: #F7F9FC;
+    --border: #E8EDF2;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding-bottom: 80px;
+}
+
+/* Navigation */
+.nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: #95A5A6;
+    transition: all 0.3s;
+    border-radius: 12px;
+}
+
+.nav-item.active {
+    color: var(--primary);
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.nav-item .icon {
+    font-size: 24px;
+}
+
+.nav-item span:last-child {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Pages */
+.page {
+    display: none;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.header h1 {
+    font-size: 32px;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #95A5A6;
+    font-size: 16px;
+}
+
+.btn-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: var(--light-gray);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Motivation Card */
+.motivation-card {
+    background: linear-gradient(135deg, var(--primary) 0%, #FF8E53 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+}
+
+.motivation-card h2 {
+    font-size: 24px;
+    line-height: 1.4;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: var(--light-gray);
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #95A5A6;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 12px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.btn-secondary {
+    background: var(--light-gray);
+    color: var(--text);
+}
+
+.btn-secondary:hover {
+    background: var(--border);
+}
+
+/* Input */
+.input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 12px;
+    transition: border 0.3s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Exercise Item */
+.exercise-item {
+    background: var(--light-gray);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.exercise-item input {
+    margin-bottom: 8px;
+}
+
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.remove-btn {
+    background: #E74C3C;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Saved Workouts */
+.saved-workouts {
+    margin-top: 40px;
+}
+
+.saved-workouts h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.workout-card {
+    background: white;
+    border: 2px solid var(--border);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.workout-card:hover {
+    border-color: var(--primary);
+    transform: translateX(4px);
+}
+
+.workout-card h3 {
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.workout-card p {
+    color: #95A5A6;
+    font-size: 14px;
+}
+
+/* Timer Card */
+.timer-card {
+    background: linear-gradient(135deg, var(--secondary) 0%, #45B7AF 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3);
+}
+
+.timer {
+    font-size: 56px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.timer-label {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* Exercise Progress */
+.exercise-progress-item {
+    background: var(--light-gray);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.exercise-progress-item h3 {
+    margin-bottom: 12px;
+    color: var(--text);
+}
+
+.set-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.set-row input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.set-row button {
+    padding: 10px 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.set-row.completed {
+    opacity: 0.5;
+}
+
+.set-row.completed button {
+    background: var(--secondary);
+}
+
+/* Rest Timer */
+.rest-timer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.rest-timer.hidden {
+    display: none;
+}
+
+.rest-timer h2 {
+    color: white;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.rest-countdown {
+    font-size: 120px;
+    font-weight: bold;
+    color: var(--accent);
+    margin-bottom: 40px;
+}
+
+/* Progress Section */
+.progress-section {
+    margin-bottom: 40px;
+}
+
+.progress-section h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.measurement-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.measurement-form input {
+    flex: 1;
+}
+
+.measurement-item {
+    background: var(--light-gray);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.history-item {
+    background: white;
+    border: 2px solid var(--border);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.history-item h4 {
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.history-item p {
+    color: #95A5A6;
+    font-size: 14px;
+}
+
+/* Nutrition */
+.nutrition-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.macro-card {
+    background: var(--light-gray);
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.macro-value {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 4px;
+}
+
+.macro-label {
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.macro-target {
+    font-size: 12px;
+    color: #95A5A6;
+}
+
+.meal-form {
+    background: var(--light-gray);
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+}
+
+.meal-form h2 {
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+.meal-item {
+    background: white;
+    border: 2px solid var(--border);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.meal-item h4 {
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.meal-macros {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+    color: #95A5A6;
+}
+
+.hidden {
+    display: none !important;
+}
